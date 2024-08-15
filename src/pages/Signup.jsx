@@ -17,7 +17,7 @@ export default function Signup() {
     };
     
     return (
-        <div className="flex justify-center items-center min-h-screen">
+        <div className="w-screen flex justify-center items-center min-h-screen">
             <div className="w-[551px] h-[744px] flex-col justify-start items-start gap-[27px] inline-flex">
             <div className=" text-black text-3xl font-normal font-['Libre Bodoni']">회원정보 입력</div>
             <form onSubmit={handleSubmit}>
