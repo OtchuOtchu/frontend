@@ -1,13 +1,11 @@
-export default function Recommend() {
+import RecommendProducts from "./RecommendProducts";
 
-    return (
-        <div>
-          <div>옷</div>
-          <div>
-            <div>옷</div>
-            <div>옷</div>
-            <div>옷</div>
-          </div>
-        </div>
-    );
+export default function Recommend() {
+  return (
+    <div>
+      <RecommendProducts />
+      <RecommendProducts />
+      <RecommendProducts />
+    </div>
+  );
 }
