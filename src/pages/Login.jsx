@@ -2,6 +2,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { authService } from '../firebase/fbInstance';
 import { useNavigate } from 'react-router-dom';
 import BlackButton from '../components/BlackButton';
+import WhiteButton from '../components/WhiteButton';
 
 
 
@@ -19,12 +20,13 @@ function Login() {
     };
 
     return (
-       <div className='flex justify-center items-center min-h-screen'>
+       <div className='w-screen flex justify-center items-center min-h-screen'>
             <div className="w-[629px] h-[318px] flex-col justify-start items-center gap-[50px] inline-flex">
                 <h1 className='text-black text-[50px] font-bold italic'>Welcome to OtchuOtchu</h1>
-                <button onClick={handleGoogleSign}>Login in Google</button>
-                
-                <BlackButton label={"회원가입하러가기"} onClick={goToSignup}/>
+                <div className='flex flex-col gap-[20px]'>
+                    <WhiteButton label={"Login in Google"} onClick={handleGoogleSign}/>
+                    <BlackButton label={"Sign Up"} onClick={goToSignup}/>
+                </div>
             </div>
         </div>
     );
