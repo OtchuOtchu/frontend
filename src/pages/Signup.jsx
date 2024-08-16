@@ -1,9 +1,72 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
+import GrayInput from "../components/grayinput";
+import BlackButton from "../components/BlackButton";
 // import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
 export default function Signup() {
-    // const [username, setUsername] = useState(""); // username 상태를 관리
+    const [nickname, setNickname] = useState("");
+    const [gender, setGender] = useState("");
+    const [style, setStyle] = useState("");
+    const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // 회원가입 처리 로직
+    };
+    
+    return (
+        <div className="flex justify-center items-center min-h-screen">
+            <div className="w-[551px] h-[744px] flex-col justify-start items-start gap-[27px] inline-flex">
+            <div className=" text-black text-3xl font-normal font-['Libre Bodoni']">회원정보 입력</div>
+            <form onSubmit={handleSubmit}>
+                
+                    <GrayInput 
+                        label="닉네임" 
+                        type="text" 
+                        value={nickname} 
+                        onChange={(e)=> setNickname(e.target.value)}
+                        placeholder={"닉네임을 입력하세요."}
+                    />
+                    <GrayInput 
+                        label="성별" 
+                        type="text" 
+                        value={gender} 
+                        onChange={(e)=> setGender(e.target.value)}
+                        placeholder={"성별을 입력하세요."}
+                    />
+                    <GrayInput 
+                        label="스타일" 
+                        type="text" 
+                        value={style} 
+                        onChange={(e)=> setStyle(e.target.value)}
+                        placeholder={"선호하는 스타일을 입력하세요."}
+                    />
+                    <GrayInput 
+                        label="키" 
+                        type="text" 
+                        value={height} 
+                        onChange={(e)=> setHeight(e.target.value)}
+                        placeholder={"키를 입력하세요."}
+                    />
+                    <GrayInput 
+                        label="몸무게" 
+                        type="text" 
+                        value={weight} 
+                        onChange={(e)=> setWeight(e.target.value)}
+                        placeholder={"몸무게를 입력하세요."}
+                    />
+                
+                <BlackButton label={"가입완료"} type="submit"/>
+            </form>
+            
+        </div>
+        </div>
+
+    );
+}
+// const [username, setUsername] = useState(""); // username 상태를 관리
     // const [password, setPassword] = useState(""); // password 상태를 관리
     // const [email, setEmail] = useState(""); // email 상태를 관리
     // const navigate = useNavigate(); // 페이지 이동을 위한 navigate 함수 사용
@@ -29,8 +92,7 @@ export default function Signup() {
     //         );
     //     }
     // };
-
-    return (
+//--------------------------------------------------
         // <div className="register-container">
         //     <h2>회원가입</h2>
         //     <form onSubmit={handleSubmit}>
@@ -64,24 +126,3 @@ export default function Signup() {
         //         <button type="submit">Register</button>
         //     </form>
         // </div>
-        <div>
-            <h2>회원가입</h2>
-            <form>
-                <div>
-                    <label>Username</label>
-                    <input type="text" />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" />
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" />
-                </div>
-                <button type="submit">Register</button>
-            </form>
-        </div>
-
-    );
-}
