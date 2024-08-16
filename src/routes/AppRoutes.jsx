@@ -6,7 +6,8 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import RecommendPage from "../pages/RecommendPage";
 
-import Modal from "../components/Recommend/Modal";
+
+import AddForm from "../components/Recommend/AddForm";
 
 function AppRoutes() {
     return (
@@ -16,7 +17,7 @@ function AppRoutes() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/recommend" element={<RecommendPage />} />
-                <Route path="/modal" element={<Modal />} />
+                <Route path="/addform" element={<AddForm />} />
             </Route>
         </Routes>
     );

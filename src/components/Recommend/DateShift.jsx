@@ -13,11 +13,13 @@ export default function DateShift() {
         <div className="w-full bg-black text-white">
             <div className="flex items-center justify-between px-4 py-2">
                 <IoIosArrowBack size={24} />
+                {/* <div onClick={prevDay} /> */}
                 <div>Yesterday</div>
                 <span className="text-lg font-semibold">
                     {dateString}
                 </span>
                 <div>Tomorrow</div>
+                {/* <div onClick={nextDay} /> */}
                 <IoIosArrowForward size={24} />
             </div>
         </div>
