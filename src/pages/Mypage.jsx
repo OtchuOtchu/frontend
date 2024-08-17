@@ -1,6 +1,5 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { authService } from '../firebase/fbInstance';
 import { useNavigate } from 'react-router-dom';
+import MyAccount from "../components/MyPage/MyAccount";
 
 
 export default function Home() {
@@ -10,9 +9,9 @@ export default function Home() {
     
     return (
         <div className='w-screen'>
-            <div className='flex flex-col justify-center items-center min-h-screen gap-[50px]'>
-            
-                <h1>Hello world!</h1>
+            <div className='flex flex-col justify-center items-center gap-[50px]'>
+            <MyAccount />
+                
                 
             
             </div>
