@@ -22,7 +22,8 @@ export default function LocationModal({ isOpen, onClose }) {
             닫기
           </button>
         </div>
+        </div>
       </div>
-    </div>
+
   );
 }
