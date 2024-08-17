@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LocationModal from "./Location"; // LocationModal 컴포넌트를 import 합니다
 
@@ -12,6 +12,10 @@ export default function Navbar() {
     const closeLocationModal = () => {
         setIsLocationModalOpen(false);
     };
+
+    useEffect(() => {
+        console.log("Modal state:", isLocationModalOpen);
+    }, [isLocationModalOpen]);
 
     return (
         <nav className="w-full max-w-[1200px] min-w-[340px] mx-auto flex justify-between items-center px-8 py-4">
@@ -28,7 +32,7 @@ export default function Navbar() {
                 <Link to="/mypage" className="text-gray-scale-1 text-lg">My Page</Link>
             </div>
             {isLocationModalOpen && (
-                <LocationModal onClose={closeLocationModal} />
+                <LocationModal isOpen={isLocationModalOpen} onClose={closeLocationModal} />
             )}
         </nav>
     )

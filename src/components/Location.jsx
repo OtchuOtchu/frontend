@@ -5,6 +5,7 @@ import Map from "./Map";
 export default function LocationModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-8 flex-col  rounded-sm shadow-lg max-w-[800px] w-full ">
@@ -15,12 +16,7 @@ export default function LocationModal({ isOpen, onClose }) {
             <BlackButton label="Search" className="w-[6px]" />
           </div>
           <Map />
-          <button
-            onClick={onClose}
-            className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-          >
-            닫기
-          </button>
+          <BlackButton onClick={onClose} label={"닫기"}/>
         </div>
       </div>
     </div>
