@@ -1,46 +1,45 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 const MyAccount = () => {
-    const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    name: '파송탁',
+    email: 'sh1220@hanyang.ac.kr',
+    style: '시크',
+    height: 160,
+    weight: 45
+  });
 
-    const handleEditClick = () => {
-        navigate('/accountsetting');
-    };
-
-    return (
-        <div className="bg-white p-6 rounded-lg mx-auto w-[80%] max-w-[1500px]">
-            <div className="flex flex-col md:flex-row justify-between items-start">
-                <div className="flex items-center space-x-4 mb-4 md:mb-0 flex-shrink-0">
-                    <img 
-                        src="https://via.placeholder.com/64" 
-                        alt="User Avatar" 
-                        className="w-16 h-16 rounded-full"
-                    />
-                    <div>
-                        <h2 className="text-xl font-semibold">User Name</h2>
-                        <p className="text-gray-500">user@example.com</p>
-                        <div onClick={handleEditClick}> 내정보 수정하기 ＞ </div>
-                    </div>
-                </div>
-                <div className="flex flex-col md:flex-row items-center justify-end flex-grow space-y-4 md:space-y-0 md:space-x-8">
-                    <div className="flex flex-col items-center">
-                        <p className="text-gray-600">스타일</p>
-                        <p className="text-black font-medium">시크</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <p className="text-gray-600">키</p>
-                        <p className="text-black font-medium">160cm</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <p className="text-gray-600">몸무게</p>
-                        <p className="text-black font-medium">45kg</p>
-                    </div>
-                </div>
+  return (
+    <div className="w-full max-w-[1200px] mx-auto">
+      <div className="w-[80%] mx-auto bg-white">
+        <div className="p-6 flex items-center justify-between">
+          <div className="flex items-center">
+            <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+            <div>
+              <h2 className="text-xl font-bold flex items-center">
+                {userData.name} <span className="ml-2 text-gray-400">&gt;</span>
+              </h2>
+              <p className="text-sm text-gray-600">{userData.email}</p>
             </div>
+          </div>
+          <div className="flex items-center space-x-8">
+            <div className="text-center">
+              <p className="text-sm text-gray-600">스타일</p>
+              <p className="font-bold">{userData.style}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-gray-600">키</p>
+              <p className="font-bold">{userData.height}<span className="text-sm font-normal">cm</span></p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-gray-600">몸무게</p>
+              <p className="font-bold">{userData.weight}<span className="text-sm font-normal">kg</span></p>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default MyAccount;
-
