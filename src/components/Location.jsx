@@ -18,7 +18,8 @@ export default function LocationModal({ isOpen, onClose }) {
           <Map />
           <BlackButton onClick={onClose} label={"닫기"}/>
         </div>
+        </div>
       </div>
-    </div>
+
   );
 }
