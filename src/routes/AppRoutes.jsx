@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import RecommendPage from "../pages/RecommendPage";
 import Mypage from "../pages/Mypage";
+import AccountSetting from "../pages/AccountSetting";
 
 function AppRoutes() {
     return (
@@ -16,6 +17,7 @@ function AppRoutes() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/recommend" element={<RecommendPage />} />
                 <Route path="/mypage" element={<Mypage />} />
+                <Route path="/accountsetting" element={<AccountSetting />} />
             </Route>
         </Routes>
     );
