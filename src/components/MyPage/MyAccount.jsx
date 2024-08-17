@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MyAccount = () => {
+    const navigate = useNavigate();
+
+    const handleEditClick = () => {
+        navigate('/accountsetting');
+    };
+
     return (
         <div className="bg-white p-6 rounded-lg mx-auto w-[80%] max-w-[1500px]">
             <div className="flex flex-col md:flex-row justify-between items-start">
@@ -13,6 +20,7 @@ const MyAccount = () => {
                     <div>
                         <h2 className="text-xl font-semibold">User Name</h2>
                         <p className="text-gray-500">user@example.com</p>
+                        <div onClick={handleEditClick}> 내정보 수정하기 ＞ </div>
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row items-center justify-end flex-grow space-y-4 md:space-y-0 md:space-x-8">
