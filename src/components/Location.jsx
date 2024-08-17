@@ -1,19 +1,27 @@
-import React from 'react';
+import BlackButton from "./BlackButton";
+import GrayInput from "./grayinput";
+import Map from "./Map";
 
 export default function LocationModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
-        <h2 className="text-xl font-bold mb-4">Location</h2>
-        <p>여기에 위치 정보를 표시합니다.</p>
-        <button
-          onClick={onClose}
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-        >
-          닫기
-        </button>
+      <div className="bg-white p-8 flex-col  rounded-sm shadow-lg max-w-[800px] w-full ">
+        <div className="w-full h-[620px] flex-col justify-start items-center gap-[10px] inline-flex">
+          <h2 className="text-xl font-bold mb-4">지역을 선택하세요</h2>
+          <div className="flex">
+            <GrayInput placeholder="위치를 입력하세요" />
+            <BlackButton label="Search" className="w-[6px]" />
+          </div>
+          <Map />
+          <button
+            onClick={onClose}
+            className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+          >
+            닫기
+          </button>
+        </div>
       </div>
     </div>
   );
