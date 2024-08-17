@@ -1,18 +1,35 @@
-import styled from "styled-components";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import LocationModal from "./Location"; // LocationModal 컴포넌트를 import 합니다
 
 export default function Navbar() {
+    const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+
+    const openLocationModal = () => {
+        setIsLocationModalOpen(true);
+    };
+
+    const closeLocationModal = () => {
+        setIsLocationModalOpen(false);
+    };
+
     return (
-        <div>
-            <StyledHeader>
-                header
-            </StyledHeader>
-        </div>
+        <nav className="w-full max-w-[1200px] min-w-[340px] mx-auto flex justify-between items-center px-8 py-4">
+            <div className="text-gray-scale-1 text-xl font-bold">
+                <Link to="/" className="text-gray-scale-1 text-lg">Logo</Link>
+            </div>
+            <div className="flex gap-10">
+                <div 
+                    className="text-gray-scale-1 text-lg cursor-pointer"
+                    onClick={openLocationModal}
+                >
+                    Location
+                </div>
+                <Link to="/mypage" className="text-gray-scale-1 text-lg">My Page</Link>
+            </div>
+            {isLocationModalOpen && (
+                <LocationModal onClose={closeLocationModal} />
+            )}
+        </nav>
     )
 }
-
-const StyledHeader = styled.header`
-    background: pink;
-    color: red;
-    padding: 16px;
-    font-size: 24px;
-`;

@@ -1,9 +1,9 @@
 export default function Footer() {
     return (
-        <div>
-            <h1 className="text-3xl font-bold underline">
-                Footer!
-            </h1>
+        <div className="max-w-full h-[100px] bg-gray-300 text-white px-4">
+            
+            © 2024 otchuotchu. All rights reserved.
+            
         </div>
     )
 }
