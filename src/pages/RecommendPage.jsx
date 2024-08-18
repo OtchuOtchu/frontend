@@ -8,7 +8,7 @@ export default function Recommendation() {
         <div>
             <DateShift />
             <Recommend />
-            {/* <Weather /> */}
+            <Weather />
         </div>
     );
 }

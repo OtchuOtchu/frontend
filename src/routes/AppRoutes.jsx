@@ -8,6 +8,7 @@ import RecommendPage from "../pages/RecommendPage";
 
 
 import AddForm from "../components/Recommend/AddForm";
+import Weather from "../components/Recommend/Weather";
 
 function AppRoutes() {
     return (
@@ -18,6 +19,7 @@ function AppRoutes() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/recommend" element={<RecommendPage />} />
                 <Route path="/addform" element={<AddForm />} />
+                <Route path="/weather" element={<Weather />} />
             </Route>
         </Routes>
     );
