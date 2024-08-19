@@ -5,6 +5,8 @@ import Layout from "../pages/Root";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import RecommendPage from "../pages/RecommendPage";
+import Mypage from "../pages/Mypage";
+import AccountSetting from "../pages/AccountSetting";
 
 
 import AddForm from "../components/Recommend/AddForm";
@@ -20,6 +22,8 @@ function AppRoutes() {
                 <Route path="/recommend" element={<RecommendPage />} />
                 <Route path="/addform" element={<AddForm />} />
                 <Route path="/weather" element={<Weather />} />
+                <Route path="/mypage" element={<Mypage />} />
+                <Route path="/accountsetting" element={<AccountSetting />} />
             </Route>
         </Routes>
     );
