@@ -1,5 +1,4 @@
-
-export default function GrayInput({ label, type = "text", value, onChange, placeholder }) {
+export default function InputForm({ label, type = "text", value, onChange, placeholder }) {
     return (
         <div className="flex flex-col gap-2 mb-4 w-full">
             <label className="text-black text-xl font-normal">{label}</label>

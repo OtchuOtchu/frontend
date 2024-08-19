@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LocationModal from "./Location"; // LocationModal 컴포넌트를 import 합니다
 
-export default function Navbar() {
+export default function MainNavigation() {
     const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
 
     const openLocationModal = () => {
