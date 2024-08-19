@@ -52,14 +52,7 @@ const SelectedClothes = () => {
 
   return (
     <div className="bg-white p-6">
-      <div className="flex justify-center items-center mb-6">
-        <h2 className="text-2xl font-bold mr-4">CLOSET ({filteredClothes.length})</h2>
-        <div className="border-l h-8"></div>
-        <h2 className="text-2xl font-bold text-gray-400 ml-4">STYLE (2)</h2>
-      </div>
-
       <div className="border-b mb-6"></div>
-
       <div className="mb-4 text-center">
         <div className="flex items-center justify-center space-x-4">
           <span className="text-sm font-semibold">Category</span>

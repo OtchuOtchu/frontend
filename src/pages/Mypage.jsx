@@ -14,7 +14,7 @@ export default function Home() {
             <div className='flex flex-col justify-center items-center gap-[50px]'>
             <MyAccount />
             <Tab />
-            <SelectedClothes />
+            
                 
             </div>
         </div>
