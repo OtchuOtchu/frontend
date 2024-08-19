@@ -1,24 +1,37 @@
 import { useState } from "react";
 import InputForm from "../components/InputForm";
 import BlackButton from "../components/BlackButton";
+import usePeopleStore from "../store/PeopleStore";
 
 export default function AccountSetting() {
-    const [nickname, setNickname] = useState("");
-    const [gender, setGender] = useState("");
-    const [style, setStyle] = useState("");
-    const [height, setHeight] = useState("");
-    const [weight, setWeight] = useState("");
+    const { loggedInUser, updateUser } = usePeopleStore(); 
+    
+    const [nickname, setNickname] = useState(loggedInUser?.nickname || "");
+    const [gender, setGender] = useState(loggedInUser?.gender || "");
+    const [style, setStyle] = useState(loggedInUser?.style || "");
+    const [height, setHeight] = useState(loggedInUser?.height || "");
+    const [weight, setWeight] = useState(loggedInUser?.weight || "");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 회원가입 처리 로직
+        const updatedUser = {
+            ...loggedInUser,
+            nickname,
+            gender,
+            style,
+            height,
+            weight,
+        };
+        updateUser(updatedUser); 
+
+        alert("회원정보가 수정되었습니다.");
     };
 
     return (
         <div className="w-screen flex justify-center min-h-screen gap-10">
             <div>
                 <div className="w-[200px] h-[200px] bg-gray-200">내사진</div>
-                <div>sh1220@naver.com</div>
+                <div>{loggedInUser.email}</div>
                 <div>이메일은 변경할 수 없습니다.</div>
             </div>
             <div className="w-[551px] h-[744px] flex-col justify-start items-start gap-[27px] inline-flex">
