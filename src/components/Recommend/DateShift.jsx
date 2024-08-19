@@ -10,22 +10,17 @@ export default function DateShift() {
     }).replace(/\./g, '-').replace(/-$/, '').replace(/\s/g, '');
 
     return (
-
-        <div className="header row">
-            <div className="col col-start">
-                <span className="text">
-                    <span className="text month">
-                        {dateString}
-                    </span>
-                </span>
-            </div>
-            <div className="col col-end">
+        <div className="w-full bg-black text-white">
+            <div className="flex items-center justify-between px-4 py-2">
+                <IoIosArrowBack size={24} />
                 {/* <div onClick={prevDay} /> */}
-                <IoIosArrowBack />
-                <div>yesterday</div>
+                <div>Yesterday</div>
+                <span className="text-lg font-semibold">
+                    {dateString}
+                </span>
+                <div>Tomorrow</div>
                 {/* <div onClick={nextDay} /> */}
-                <div>tomorrow</div>
-                <IoIosArrowForward />
+                <IoIosArrowForward size={24} />
             </div>
         </div>
     );

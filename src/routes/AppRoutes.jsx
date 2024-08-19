@@ -8,6 +8,10 @@ import RecommendPage from "../pages/RecommendPage";
 import Mypage from "../pages/Mypage";
 import AccountSetting from "../pages/AccountSetting";
 
+
+import AddForm from "../components/Recommend/AddForm";
+import Weather from "../components/Recommend/Weather";
+
 function AppRoutes() {
     return (
         <Routes>
@@ -16,6 +20,8 @@ function AppRoutes() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/recommend" element={<RecommendPage />} />
+                <Route path="/addform" element={<AddForm />} />
+                <Route path="/weather" element={<Weather />} />
                 <Route path="/mypage" element={<Mypage />} />
                 <Route path="/accountsetting" element={<AccountSetting />} />
             </Route>
