@@ -20,7 +20,7 @@ export default function MainNavigation() {
     return (
         <nav className="w-full max-w-[1200px] min-w-[340px] mx-auto flex justify-between items-center px-8 py-4">
             <div className="text-gray-scale-1 text-xl font-bold">
-                <Link to="/" className="text-gray-scale-1 text-lg">Logo</Link>
+                <Link to="/recommend" className="text-gray-scale-1 text-lg">Logo</Link>
             </div>
             <div className="flex gap-10">
                 <div 
