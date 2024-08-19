@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import useClothesStore from '../../store/ClothesStore';
 
 const SelectedClothes = () => {
+  const likedClothes = useClothesStore(state => state.clothes.filter(item => item.liked));
+  const toggleLiked = useClothesStore(state => state.toggleLiked);
+  
+
   const [selectedCategories, setSelectedCategories] = useState(['ALL']);
   const [selectedWeathers, setSelectedWeathers] = useState(['ALL']);
-  const [likedClothes, setLikedClothes] = useState([
-    { id: 1, image: '/path/to/shirt.jpg', category: '상의', weather: '맑음' },
-    { id: 2, image: '/path/to/jacket.jpg', category: '아우터', weather: '구름' },
-    { id: 3, image: '/path/to/pants.jpg', category: '하의', weather: '흐림' },
-    { id: 4, image: '/path/to/jacket2.jpg', category: '아우터', weather: '비' },
-    { id: 5, image: '/path/to/shoes.jpg', category: '신발', weather: 'ALL' },
-    { id: 6, image: '/path/to/jacket3.jpg', category: '아우터', weather: '눈' },
-  ]);
   const [filteredClothes, setFilteredClothes] = useState(likedClothes);
 
   const categories = ['ALL', '상의', '아우터', '하의', '신발', '액세서리', '기타용품'];
@@ -38,16 +35,16 @@ const SelectedClothes = () => {
     });
   };
 
-  const removeLikedItem = (id) => {
-    setLikedClothes(prev => prev.filter(item => item.id !== id));
-  };
 
   useEffect(() => {
     const filtered = likedClothes.filter(item => 
       (selectedCategories.includes('ALL') || selectedCategories.includes(item.category)) &&
       (selectedWeathers.includes('ALL') || selectedWeathers.includes(item.weather))
     );
-    setFilteredClothes(filtered);
+
+    if (JSON.stringify(filtered) !== JSON.stringify(filteredClothes)) {
+        setFilteredClothes(filtered);
+    }
   }, [selectedCategories, selectedWeathers, likedClothes]);
 
   return (
@@ -60,7 +57,7 @@ const SelectedClothes = () => {
             <button
               key={category}
               onClick={() => toggleCategory(category)}
-              className={`px-2 py-1 text-sm ${selectedCategories.includes(category) ? 'font-bold' : ''}`}
+              className={`px-2 py-1 text-sm ${selectedCategories.includes(category) ? 'font-bold bg-gray-200' : ''}`}
             >
               {category}
             </button>
@@ -75,7 +72,7 @@ const SelectedClothes = () => {
             <button
               key={weather}
               onClick={() => toggleWeather(weather)}
-              className={`px-2 py-1 text-sm ${selectedWeathers.includes(weather) ? 'font-bold' : ''}`}
+              className={`px-2 py-1 text-sm ${selectedWeathers.includes(weather) ? 'font-bold bg-gray-200' : ''}`}
             >
               {weather}
             </button>
@@ -91,7 +88,7 @@ const SelectedClothes = () => {
             </div>
             <button 
               className="absolute bottom-2 right-2"
-              onClick={() => removeLikedItem(item.id)}
+              onClick={() => toggleLiked(item.id)}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="black">
                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />

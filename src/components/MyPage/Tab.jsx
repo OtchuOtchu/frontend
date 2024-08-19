@@ -1,8 +1,14 @@
 import React,{useState} from 'react';
 import SelectedClothes from './SelectedClothes';
 import StyleSet from './StyleSet';
+import useClothesStore from '../../store/ClothesStore';
 
 export default function Tab({ label, isActive, onClick }) {
+    
+    const likedClothesCount = useClothesStore(state => state.clothes.filter(item => item.liked).length);
+    // 특정 날짜에 입은 옷(set)를 불러오는 함수
+    const likedSetsCount = useClothesStore(state => Object.keys(state.outfitSets).length);
+    
     const [activeTab, setActiveTab] = useState('selectedClothes');
 
     const renderContent = () => {
@@ -25,7 +31,7 @@ export default function Tab({ label, isActive, onClick }) {
                     style={{ border:'none' }}
                         >
                         <div className="flex justify-center items-center">
-                            CLOSET
+                            CLOSET ({likedClothesCount})
                         </div>
                 </button>
 
@@ -39,7 +45,7 @@ export default function Tab({ label, isActive, onClick }) {
                         style={{ borderTop: 'none', borderRight: 'none', borderBottom: 'none' }}
                     >
                         <div className="flex justify-center items-center">
-                            STYLE
+                            STYLE({likedSetsCount})
                         </div>
                 </button>
         
