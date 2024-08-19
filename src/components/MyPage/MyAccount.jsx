@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MyAccount = () => {
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     name: '파송탁',
     email: 'sh1220@hanyang.ac.kr',
@@ -8,6 +11,10 @@ const MyAccount = () => {
     height: 160,
     weight: 45
   });
+
+const handleAccountSettingClick = () => {
+    navigate('/accountsetting');
+};
 
   return (
     <div className="w-full max-w-[1200px] mx-auto">
@@ -17,7 +24,11 @@ const MyAccount = () => {
             <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
             <div>
               <h2 className="text-xl font-bold flex items-center">
-                {userData.name} <span className="ml-2 text-gray-400">&gt;</span>
+                {userData.name}
+                <span 
+                  className="ml-2 text-gray-400 cursor-pointer"
+                  onClick={handleAccountSettingClick}>
+                  &gt;</span>
               </h2>
               <p className="text-sm text-gray-600">{userData.email}</p>
             </div>
