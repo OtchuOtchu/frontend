@@ -3,17 +3,27 @@ import { authService } from '../firebase/fbInstance';
 import { useNavigate } from 'react-router-dom';
 import BlackButton from '../components/BlackButton';
 import WhiteButton from '../components/WhiteButton';
-
+import usePeopleStore from '../store/PeopleStore';
 
 
 function Login() {
     const navigate = useNavigate();
+    const people = usePeopleStore(state => state.people);
+    const setLoggedInUser = usePeopleStore(state => state.setLoggedInUser);
 
     const handleGoogleSign = async () => {
         const provider = new GoogleAuthProvider();
-        await signInWithPopup(authService, provider).then((data) => {
-            console.log('Logged in:', data);
-            navigate('/recommend');
+        await signInWithPopup(authService, provider)
+            .then((data) => {
+            const userEmail = data.user.email;
+            const user = people.find(person =>person.email ===userEmail)
+            if(user){
+                console.log('Logged in:', data);
+                usePeopleStore.setState({ loggedInUser: user });
+                navigate('/recommend');
+            } else {
+                alert("일치하는 계정이 없습니다.")
+            }
         }).catch((err) => console.log(err));
     }
 
@@ -21,6 +31,11 @@ function Login() {
         const provider = new GoogleAuthProvider();
         await signInWithPopup(authService, provider)
             .then((data) => {
+                const userEmail = data.user.email;  // 구글 인증으로 얻은 이메일
+                setLoggedInUser({
+                    email: userEmail,
+                    name: data.user.displayName
+                });
                 console.log('Signed up:', data);
                 // You can also store the user's info in your database here
                 navigate('/signup'); // Redirect to a welcome page or dashboard after signup
