@@ -32,13 +32,23 @@ function Login() {
         await signInWithPopup(authService, provider)
             .then((data) => {
                 const userEmail = data.user.email;  // 구글 인증으로 얻은 이메일
-                setLoggedInUser({
-                    email: userEmail,
-                    name: data.user.displayName
-                });
-                console.log('Signed up:', data);
-                // You can also store the user's info in your database here
-                navigate('/signup'); // Redirect to a welcome page or dashboard after signup
+                const existingUser = people.find(person => person.email === userEmail);
+
+                if (existingUser){
+                    const userChoice = window.confirm("이미 가입한 계정입니다. 로그인하시겠습니까?");
+                    if (userChoice) {
+                        usePeopleStore.setState({ loggedInUser: existingUser });
+                        navigate('/recommend');
+                    }
+                } else {
+                    setLoggedInUser({
+                        email: userEmail,
+                        name: data.user.displayName
+                    });
+                    console.log('Signed up:', data);
+                    // You can also store the user's info in your database here
+                    navigate('/signup'); // Redirect to a welcome page or dashboard after signup
+                }
             })
             .catch((err) => console.log(err));
     };
