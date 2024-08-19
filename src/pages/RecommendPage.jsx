@@ -5,9 +5,11 @@ import Weather from "../components/Recommend/Weather";
 export default function Recommendation() {
 
     return (
-        <div>
-            <DateShift />
-            <Recommend />
+        <div className="flex">
+            <div className="flex-col">
+                <DateShift />
+                <Recommend />
+            </div>
             <Weather />
         </div>
     );
