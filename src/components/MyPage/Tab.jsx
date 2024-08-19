@@ -13,62 +13,37 @@ export default function Tab({ label, isActive, onClick }) {
         }
     };
     return (
-        <div className='flex flex-col items-center '>
-            <div className="flex">
+        <div className='w-[1200] flex flex-col items-center'>
+            <div className="w-full flex p-2 border-b-2 border-gray-300">
+               
                 <button
-                    className={`py-2 px-4 ${isActive ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'} focus:outline-none`}
+                    className={`py-2 px-4 w-full text-2xl font-bold bg-white
+                        ${activeTab === 'selectedClothes' 
+                            ? 'text-gray-500' 
+                            : 'text-gray-400'} focus:outline-none  hover:bg-gray-50`}
                     onClick={() => setActiveTab('selectedClothes')}
+                    style={{ border:'none' }}
                         >
-                            {label}
-                            <div className="flex justify-center items-center mb-6">
-                        <div 
-                        
-                        className="text-2xl font-bold mr-4">CLOSET</div>
-                    </div>
+                        <div className="flex justify-center items-center">
+                            CLOSET
+                        </div>
                 </button>
 
-                <div className="border-l h-8"></div>
                 
                 <button
-                    className={`py-2 px-4 ${isActive ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'} focus:outline-none`}
-                    onClick={() => setActiveTab('styleSet')}
-                        >
-                            {label}
-                            <div className="flex justify-center items-center mb-6">
-                        <div 
-                        
-                        className="text-2xl font-bold text-gray-400 mr-4">STYLE</div>
-                    </div>
+                        className={`py-2 px-4 w-full text-2xl font-bold bg-white border-l-2 border-gray-300
+                            ${activeTab === 'styleSet' 
+                            ? 'text-gray-500' 
+                            : 'text-gray-400'} focus:outline-none  hover:bg-gray-50`}
+                        onClick={() => setActiveTab('styleSet')}
+                        style={{ borderTop: 'none', borderRight: 'none', borderBottom: 'none' }}
+                    >
+                        <div className="flex justify-center items-center">
+                            STYLE
+                        </div>
                 </button>
         
             </div>
-
-            <div className='flex'>
-                    <button
-                        className={`py-2 px-4 ${activeTab === 'selectedClothes' 
-                            ? 'border-b-2 border-blue-500 text-blue-500' 
-                            : 'text-gray-500'} focus:outline-none`}
-                        onClick={() => setActiveTab('selectedClothes')}
-                    >
-                        <div className="flex justify-center items-center">
-                            <div className="text-2xl font-bold mr-4">CLOSET</div>
-                        </div>
-                    </button>
-
-                    <div className="border-l h-8 mx-4"></div>
-                    
-                    <button
-                        className={`py-2 px-4 ${activeTab === 'styleSet' 
-                            ? 'border-b-2 border-blue-500 text-blue-500' 
-                            : 'text-gray-500'} focus:outline-none`}
-                        onClick={() => setActiveTab('styleSet')}
-                    >
-                        <div className="flex justify-center items-center">
-                            <div className="text-2xl font-bold text-gray-400">STYLE</div>
-                        </div>
-                    </button>
-        </div>
-
 
             <div className="mt-4">
                 {renderContent()}

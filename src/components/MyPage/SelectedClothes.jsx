@@ -52,7 +52,7 @@ const SelectedClothes = () => {
 
   return (
     <div className="bg-white p-6">
-      <div className="border-b mb-6"></div>
+      
       <div className="mb-4 text-center">
         <div className="flex items-center justify-center space-x-4">
           <span className="text-sm font-semibold">Category</span>
