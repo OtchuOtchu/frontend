@@ -5,7 +5,6 @@ const SelectedClothes = () => {
   const likedClothes = useClothesStore(state => state.clothes.filter(item => item.liked));
   const toggleLiked = useClothesStore(state => state.toggleLiked);
   
-
   const [selectedCategories, setSelectedCategories] = useState(['ALL']);
   const [selectedWeathers, setSelectedWeathers] = useState(['ALL']);
   const [filteredClothes, setFilteredClothes] = useState(likedClothes);
@@ -35,7 +34,6 @@ const SelectedClothes = () => {
     });
   };
 
-
   useEffect(() => {
     const filtered = likedClothes.filter(item => 
       (selectedCategories.includes('ALL') || selectedCategories.includes(item.category)) &&
@@ -50,50 +48,82 @@ const SelectedClothes = () => {
   return (
     <div className="bg-white p-6">
       
+      {/* 카테고리 필터 */}
       <div className="mb-4 text-center">
         <div className="flex items-center justify-center space-x-4">
           <span className="text-sm font-semibold">Category</span>
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => toggleCategory(category)}
-              className={`px-2 py-1 text-sm ${selectedCategories.includes(category) ? 'font-bold bg-gray-200' : ''}`}
-            >
-              {category}
-            </button>
+          {categories.map((category, index) => (
+            <React.Fragment key={category}>
+              <button
+                onClick={() => toggleCategory(category)}
+                className={`px-2 py-1 text-sm ${selectedCategories.includes(category) ? 'font-bold' : 'text-gray-500'}`}
+                style={{
+                  backgroundColor: 'transparent',
+                  borderRight: index < categories.length - 1 ? '1px solid #ccc' : 'none',
+                  outline: 'none',
+                  textAlign: 'center',
+                  border: 'none', // hover 시 테두리 제거
+                  boxShadow: 'none', // hover 시 그림자 제거
+                }}
+              >
+                {category}
+              </button>
+              {index < categories.length - 1 && (
+                <div className="h-4 w-px bg-gray-300"></div>
+              )}
+            </React.Fragment>
           ))}
         </div>
       </div>
 
+      {/* 날씨 필터 */}
       <div className="mb-6 text-center">
         <div className="flex items-center justify-center space-x-4">
           <span className="text-sm font-semibold">Weather</span>
-          {weatherOptions.map(weather => (
-            <button
-              key={weather}
-              onClick={() => toggleWeather(weather)}
-              className={`px-2 py-1 text-sm ${selectedWeathers.includes(weather) ? 'font-bold bg-gray-200' : ''}`}
-            >
-              {weather}
-            </button>
+          {weatherOptions.map((weather, index) => (
+            <React.Fragment key={weather}>
+              <button
+                onClick={() => toggleWeather(weather)}
+                className={`px-2 py-1 text-sm ${selectedWeathers.includes(weather) ? 'font-bold' : 'text-gray-500'}`}
+                style={{
+                  backgroundColor: 'transparent',
+                  borderRight: index < weatherOptions.length - 1 ? '1px solid #ccc' : 'none',
+                  outline: 'none',
+                  textAlign: 'center',
+                  border: 'none', // hover 시 테두리 제거
+                  boxShadow: 'none', // hover 시 그림자 제거
+                }}
+              >
+                {weather}
+              </button>
+              {index < weatherOptions.length - 1 && (
+                <div className="h-4 w-px bg-gray-300"></div>
+              )}
+            </React.Fragment>
           ))}
         </div>
       </div>
 
-      <div className="grid grid-cols-5 gap-4 bg-gray-100 p-4">
+      {/* 옷 필터링된 목록 */}
+      <div className="grid grid-cols-4 gap-4 bg-gray-100 p-4">
         {filteredClothes.map((item) => (
-          <div key={item.id} className="relative">
-            <div className="aspect-square border border-gray-300">
-              <img src={item.image} alt="clothing item" className="w-full h-full object-cover" />
+          <div key={item.id} className="relative bg-white border border-gray-300">
+            <img src={item.image} alt="clothing item" className="w-full h-32 object-cover" />
+            <div className="absolute bottom-2 right-2">
+              <button 
+                onClick={() => toggleLiked(item.id)}
+                className="p-2 bg-transparent border-none"
+                style={{
+                  boxShadow: 'none',
+                  border: 'none',
+                  outline: 'none'
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="black">
+                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                </svg>
+              </button>
             </div>
-            <button 
-              className="absolute bottom-2 right-2"
-              onClick={() => toggleLiked(item.id)}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="black">
-                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-              </svg>
-            </button>
           </div>
         ))}
       </div>
