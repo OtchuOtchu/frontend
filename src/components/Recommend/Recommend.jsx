@@ -9,7 +9,6 @@ export default function Recommend() {
         <IoIosAddCircleOutline className="text-4xl" />
       </Link>
       <RecommendProducts />
-      <button className="bg-black text-white rounded-sm">Capture my outfit</button>
     </div>
   );
 }

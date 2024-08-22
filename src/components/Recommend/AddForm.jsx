@@ -1,9 +1,11 @@
 import { useNavigate, Link } from 'react-router-dom';
 
+
 import ImagePicker from "./ImagePicker";
 import Modal from "./Modal";
 
 export default function AddForm() {
+    const navigate = useNavigate();
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -11,8 +13,18 @@ export default function AddForm() {
         navigate('/recommend'); // 추가 후 돌아가기
     }
 
+    function closeHandler() {
+        navigate('/recommend'); // 페이지 이동을 위한 경로 지정
+    }
+
     return (
         <Modal>
+            <button
+                onClick={closeHandler}
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            >
+                &#10005;
+            </button>
             <h1 className="text-2xl font-bold mb-4 text-center">추가하고 싶은 옷을 올려주세요.</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-col items-center">
