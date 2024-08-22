@@ -6,22 +6,21 @@ import classes from './ImagePicker.module.css';
 
 
 export default function ImagePicker({ label, name }) {
-    // 선택된 이미지를 관리
+    // 선택 이미지 관리
     const [pickedImage, setPickedImage] = useState();
-    // 이미지 input 요소에 접근.
+    // 이미지 input 요소 접근
     const imageInput = useRef();
 
-    // 'Pick an Image' 버튼이 클릭되었을 때 호출되는 함수입니다.
     function handlePickClick() {
-        // imageInput 요소를 클릭하여 파일 선택 창을 엽니다.
+        // imageInput 요소 클릭하여 파일 선택 창 열기
         imageInput.current.click();
     }
 
     function handleImageChange(event) {
-        // 첫 번째 파일을 가져옴
+        // 첫 번째 파일 가져옴
         const file = event.target.files[0];
 
-        // 파일 없을 경우 상태를 초기화
+        // 파일 없을 경우 상태 초기화
         if (!file) {
             setPickedImage(null);
             return;
@@ -42,7 +41,7 @@ export default function ImagePicker({ label, name }) {
 
     return (
         <div className={classes.picker}>
-            {/* input 요소 연결 label 렌더링. */}
+            {/* input 요소 연결 label 렌더링*/}
             <label htmlFor={name}>{label}</label>
             <div className={classes.controls}>
                 <input
@@ -60,7 +59,7 @@ export default function ImagePicker({ label, name }) {
                 >
                     <div className={classes.preview}>
                         {/*이미지 없으면 메시지 표시*/}
-                        {!pickedImage && <p>이미지를 선택하세요.</p>}
+                        {!pickedImage && <p>사진 업로드하기</p>}
                         {pickedImage && (
                             <img
                                 src={pickedImage}

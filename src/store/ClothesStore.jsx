@@ -17,7 +17,23 @@ const initialClothes = [
   { id: 13, image: '/path/to/umbrella.jpg', category: '기타용품', weather: '비', liked: false },
   { id: 14, image: '/path/to/raincoat.jpg', category: '아우터', weather: '비', liked: true },
   { id: 15, image: '/path/to/sunglasses.jpg', category: '액세서리', weather: '맑음', liked: true },
+  { id: 16, image: '/path/to/sweater.jpg', category: '상의', weather: '구름', liked: false },
+  { id: 17, image: '/path/to/hoodie.jpg', category: '상의', weather: '비', liked: true },
+  { id: 18, image: '/path/to/blouse.jpg', category: '상의', weather: '맑음', liked: false },
+  { id: 19, image: '/path/to/cardigan.jpg', category: '상의', weather: '구름', liked: true },
+  { id: 20, image: '/path/to/coat.jpg', category: '아우터', weather: '눈', liked: false },
+  { id: 21, image: '/path/to/jeans.jpg', category: '하의', weather: 'ALL', liked: true },
+  { id: 22, image: '/path/to/leggings.jpg', category: '하의', weather: '흐림', liked: false },
+  { id: 23, image: '/path/to/skirt.jpg', category: '하의', weather: '맑음', liked: true },
+  { id: 24, image: '/path/to/slacks.jpg', category: '하의', weather: '구름', liked: false },
+  { id: 25, image: '/path/to/chinos.jpg', category: '하의', weather: '맑음', liked: true },
+  { id: 26, image: '/path/to/sneakers.jpg', category: '신발', weather: 'ALL', liked: true },
+  { id: 27, image: '/path/to/loafers.jpg', category: '신발', weather: '구름', liked: false },
+  { id: 28, image: '/path/to/sandals.jpg', category: '신발', weather: '맑음', liked: true },
+  { id: 29, image: '/path/to/highheels.jpg', category: '신발', weather: '맑음', liked: false },
+  { id: 30, image: '/path/to/running_shoes.jpg', category: '신발', weather: '흐림', liked: true },
 ];
+
 
 const initialOutfitSets = {
   '2023-07-20': [1, 3, 7], // 2023년 7월 20일에 1번, 3번, 7번 옷이 세트로 사용됨
@@ -28,7 +44,7 @@ const initialOutfitSets = {
 // Zustand로 스토어 생성
 const useClothesStore = create((set) => ({
   clothes: initialClothes,
-  outfitSets: initialOutfitSets, 
+  outfitSets: initialOutfitSets,
   todaySet: {
     상의: null,
     하의: null,
@@ -43,10 +59,10 @@ const useClothesStore = create((set) => ({
       [category]: item,
     },
   })),
-  
+
   // 옷의 liked 상태를 토글하는 메서드 추가
   toggleLiked: (id) => set((state) => ({
-    clothes: state.clothes.map((item) => 
+    clothes: state.clothes.map((item) =>
       item.id === id ? { ...item, liked: !item.liked } : item
     ),
   })),
