@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 
 import ImagePicker from "./ImagePicker";
-import Modal from "./Modal";
+import Modal from '../Modal';
 
 export default function AddForm() {
     const navigate = useNavigate();
@@ -10,11 +10,11 @@ export default function AddForm() {
     function handleSubmit(event) {
         event.preventDefault();
         addPost(post);
-        navigate('/recommend'); // 추가 후 돌아가기
+        navigate('/recommend');
     }
 
     function closeHandler() {
-        navigate('/recommend'); // 페이지 이동을 위한 경로 지정
+        navigate('/recommend');
     }
 
     return (

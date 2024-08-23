@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 // 사람 더미 데이터
 const initialPeople = [
@@ -18,7 +18,7 @@ const initialPeople = [
   },
 
   {
-    nickname: "pop", gender: "Female", email: 'popramel@hanyang.ac.kr',
+    nickname: "pop", gender: "Female", email: 'popramel25@gmail.com',
     style: "Elegant", height: 170, weight: 60
   },
 

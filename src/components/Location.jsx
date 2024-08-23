@@ -1,25 +1,30 @@
+import { useNavigate } from "react-router-dom";
+
 import BlackButton from "./BlackButton";
 import InputForm from "./InputForm";
 import Map from "./Map";
+import Modal from "./Modal";
 
-export default function LocationModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
+export default function LocationModal() {
+  const navigate = useNavigate();
 
+  function closeHandler() {
+    navigate('/recommend');
+  }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-8 flex-col  rounded-sm shadow-lg max-w-[800px] w-full ">
-        <div className="w-full h-[620px] flex-col justify-start items-center gap-[10px] inline-flex">
+    <Modal>
+      <div>
+        <div className="w-full flex-col justify-start items-center gap-[10px] inline-flex">
           <h2 className="text-xl font-bold mb-4">지역을 선택하세요</h2>
-          <div className="flex">
+          {/* <div className="flex">
             <InputForm placeholder="위치를 입력하세요" />
             <BlackButton label="Search" className="w-[6px]" />
-          </div>
+          </div> */}
           <Map />
-          <BlackButton onClick={onClose} label={"닫기"} />
+          <BlackButton label={"닫기"} onClick={closeHandler} />
         </div>
       </div>
-    </div>
-
+    </Modal>
   );
 }

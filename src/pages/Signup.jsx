@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import InputForm from "../components/InputForm";
-import BlackButton from "../components/BlackButton";
 import { useNavigate } from "react-router-dom";
+
 import usePeopleStore from "../store/PeopleStore";
 
+import InputForm from "../components/InputForm";
+import BlackButton from "../components/BlackButton";
+
 export default function Signup() {
-    const navigate=useNavigate();
-    const {loggedInUser, setPeople, people} = usePeopleStore();
+    const navigate = useNavigate();
+    const { loggedInUser, setPeople, people } = usePeopleStore();
 
     const [email, setEmail] = useState("");
     const [nickname, setNickname] = useState("");
@@ -15,7 +17,6 @@ export default function Signup() {
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
 
-    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -37,23 +38,21 @@ export default function Signup() {
             navigate('/');
         }
     };
-        // 회원가입 처리 로직
-
+    // 회원가입 처리 로직
 
     return (
         <div className="w-screen flex justify-center items-center min-h-screen">
             <div className="w-[551px] h-[744px] flex-col justify-start items-start gap-[27px] inline-flex">
                 <div className=" text-black text-3xl font-normal font-['Libre Bodoni']">회원정보 입력</div>
                 <form onSubmit={handleSubmit}>
-
-                     <InputForm
+                    <InputForm
                         label="이메일 (변경할 수 없습니다.)"
                         type="text"
                         value={loggedInUser.email}
-                        readOnly 
+                        readOnly
                         className="text-gray-300"
                     />
-                    
+
                     <InputForm
                         label="닉네임"
                         type="text"
@@ -93,8 +92,6 @@ export default function Signup() {
                     <BlackButton label={"가입완료"} type="submit" />
                 </form>
             </div>
-            
         </div>
-
     );
 }

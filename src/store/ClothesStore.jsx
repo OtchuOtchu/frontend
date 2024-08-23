@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 // 옷 더미 데이터
 const initialClothes = [

@@ -1,7 +1,9 @@
 import { useState } from "react";
+
+import usePeopleStore from "../store/PeopleStore";
+
 import InputForm from "../components/InputForm";
 import BlackButton from "../components/BlackButton";
-import usePeopleStore from "../store/PeopleStore";
 
 export default function AccountSetting() {
     const { loggedInUser, updateUser } = usePeopleStore(); 
