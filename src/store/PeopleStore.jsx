@@ -20,6 +20,11 @@ const initialPeople = [
   {
     nickname: "pop", gender: "Female", email: 'popramel@hanyang.ac.kr',
     style: "Elegant", height: 170, weight: 60
+  },
+
+  {
+    nickname: "jigu", gender: "Female", email: 'sjsz0811@hanyang.ac.kr',
+    style: "Modern", height: 170, weight: 60
   }
 ];
 
