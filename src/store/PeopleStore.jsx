@@ -8,7 +8,7 @@ const initialPeople = [
   },
 
   {
-    nickname: "Sunny", gender: "Male", email: 'seond0112@naver.com',
+    nickname: "Sunny", gender: "Male", email: '',
     style: "Sporty", height: 180, weight: 75
   },
 
