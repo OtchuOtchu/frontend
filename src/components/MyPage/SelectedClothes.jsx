@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useClothesStore from '../../store/ClothesStore';
+import ClothingItem from './ClothingItem';
 
 const SelectedClothes = () => {
   const likedClothes = useClothesStore(state => state.clothes.filter(item => item.liked));
@@ -46,12 +47,10 @@ const SelectedClothes = () => {
   }, [selectedCategories, selectedWeathers, likedClothes]);
 
   return (
-    <div className="bg-white p-6">
-      
-      {/* 카테고리 필터 */}
+    <div className="w-full">
       <div className="mb-4 text-center">
         <div className="flex items-center justify-center space-x-4">
-          <span className="text-sm font-semibold">Category</span>
+          <span className="text-base font-semibold">Category</span>
           {categories.map((category, index) => (
             <React.Fragment key={category}>
               <button
@@ -62,8 +61,8 @@ const SelectedClothes = () => {
                   borderRight: index < categories.length - 1 ? '1px solid #ccc' : 'none',
                   outline: 'none',
                   textAlign: 'center',
-                  border: 'none', // hover 시 테두리 제거
-                  boxShadow: 'none', // hover 시 그림자 제거
+                  border: 'none',
+                  boxShadow: 'none',
                 }}
               >
                 {category}
@@ -76,10 +75,9 @@ const SelectedClothes = () => {
         </div>
       </div>
 
-      {/* 날씨 필터 */}
       <div className="mb-6 text-center">
         <div className="flex items-center justify-center space-x-4">
-          <span className="text-sm font-semibold">Weather</span>
+          <span className="text-base font-semibold">Weather</span>
           {weatherOptions.map((weather, index) => (
             <React.Fragment key={weather}>
               <button
@@ -90,8 +88,8 @@ const SelectedClothes = () => {
                   borderRight: index < weatherOptions.length - 1 ? '1px solid #ccc' : 'none',
                   outline: 'none',
                   textAlign: 'center',
-                  border: 'none', // hover 시 테두리 제거
-                  boxShadow: 'none', // hover 시 그림자 제거
+                  border: 'none',
+                  boxShadow: 'none',
                 }}
               >
                 {weather}
@@ -104,27 +102,9 @@ const SelectedClothes = () => {
         </div>
       </div>
 
-      {/* 옷 필터링된 목록 */}
-      <div className="grid grid-cols-4 gap-4 bg-gray-100 p-4">
+      <div className="grid grid-cols-4 gap-4 bg-gray-100 p-4 w-full">
         {filteredClothes.map((item) => (
-          <div key={item.id} className="relative bg-white border border-gray-300">
-            <img src={item.image} alt="clothing item" className="w-full h-32 object-cover" />
-            <div className="absolute bottom-2 right-2">
-              <button 
-                onClick={() => toggleLiked(item.id)}
-                className="p-2 bg-transparent border-none"
-                style={{
-                  boxShadow: 'none',
-                  border: 'none',
-                  outline: 'none'
-                }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="black">
-                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-          </div>
+          <ClothingItem key={item.id} item={item} toggleLiked={toggleLiked} />
         ))}
       </div>
     </div>

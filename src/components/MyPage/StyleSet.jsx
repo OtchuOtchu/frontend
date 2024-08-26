@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ClothingItem from './ClothingItem';
 
 const StyleSet = () => {
   const [selectedWeather, setSelectedWeather] = useState('ALL');
@@ -41,10 +42,10 @@ const StyleSet = () => {
   );
 
   return (
-    <div className="bg-white p-6">
+    <div className="w-full">
       <div className="mb-4 text-center">
         <div className="flex items-center justify-center space-x-4">
-          <span className="text-sm font-semibold">Weather</span>
+          <span className="text-base font-semibold">Weather</span>
           {weatherOptions.map((weather, index) => (
             <React.Fragment key={weather}>
               <button
@@ -68,10 +69,9 @@ const StyleSet = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 bg-gray-100 p-4">
+      <div className="grid grid-cols-4 gap-4 bg-gray-100 p-4 w-full">
         {filteredOutfits.map((outfit) => (
           <div key={outfit.date} className="bg-white border relative text-center">
-            {/* 날짜와 X 버튼을 감싸는 박스 */}
             <div className="flex justify-center items-center p-2 bg-gray-800 text-white mx-auto" style={{ maxWidth: '200px' }}>
               <div className="flex justify-center items-center w-full">
                 <span className="text-xl font-bold">{outfit.date}</span>
@@ -86,20 +86,11 @@ const StyleSet = () => {
                 </button>
               </div>
             </div>
-            {/* 날씨 표시 줄 */}
             <div className="text-center p-2 bg-gray-300">{outfit.weather}</div>
 
-            {/* 옷 아이템들 */}
             <div className="grid grid-cols-1 gap-4 mt-4">
               {outfit.items.map((item) => (
-                <div key={item.id} className="relative p-2 border-b last:border-b-0">
-                  <img src={item.image} alt={item.type} className="w-full h-32 object-cover" />
-                  <div className="absolute bottom-2 right-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="black">
-                      <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                </div>
+                <ClothingItem key={item.id} item={item} />
               ))}
             </div>
           </div>

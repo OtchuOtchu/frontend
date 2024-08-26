@@ -37,7 +37,6 @@ const MyAccount = () => {
     }
   };
 
-
   return (
     <div className="w-full max-w-[1200px] mx-auto">
       <div className="w-[80%] mx-auto bg-white">
@@ -50,10 +49,14 @@ const MyAccount = () => {
                 <span
                   className="ml-2 text-gray-400 cursor-pointer"
                   onClick={handleAccountSettingClick}>
-                  &gt;</span>
+                  &gt;
+                </span>
               </h2>
               <p className="text-sm text-gray-600">{userData.email}</p>
-              <button onClick={handleLogout} className="logout-button">
+              <button 
+                onClick={handleLogout} 
+                className="mt-2 px-3 py-1 text-xs font-medium text-white bg-black hover:bg-gray-800 focus:outline-none transition duration-150 ease-in-out"
+              >
                 로그아웃
               </button>
             </div>
