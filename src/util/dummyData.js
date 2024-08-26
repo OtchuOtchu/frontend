@@ -1,6 +1,6 @@
 export const initialClothes = [
     { id: 1, image: 'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2F1724587757476_chino.png?alt=media', category: '상의', weather: '맑음', liked: false },
-    { id: 2, image: 'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2F1724589542886_0d85f8883dfb490b8e4b22e57814b954.png?alt=media', category: '하의', weather: '맑음', liked: false },
+    { id: 2, image: 'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2F1724589542886_0d85f8883dfb490b8e4b22e57814b954.png?alt=media', category: '상의', weather: '맑음', liked: false },
     // { id: 3, image: '/path/to/pants.jpg', category: '하의', weather: '흐림', liked: true },
     // { id: 4, image: '/path/to/jacket2.jpg', category: '아우터', weather: '비', liked: false },
     // { id: 5, image: '/path/to/shoes.jpg', category: '신발', weather: 'ALL', liked: true },
