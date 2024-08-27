@@ -102,9 +102,13 @@ const SelectedClothes = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 bg-gray-100 p-4 w-full">
+      <div className="grid grid-cols-4 gap-8 bg-gray-100 p-8 w-full">
         {filteredClothes.map((item) => (
-          <ClothingItem key={item.id} item={item} toggleLiked={toggleLiked} />
+          <div key={item.id} className="bg-white border relative text-center">
+            <div className="flex flex-col w-full space-y-4">
+              <ClothingItem item={item} toggleLiked={toggleLiked} />
+            </div>
+          </div>
         ))}
       </div>
     </div>

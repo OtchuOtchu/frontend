@@ -2,7 +2,7 @@ import React from 'react';
 
 const ClothingItem = ({ item, toggleLiked }) => {
   return (
-    <div className="relative bg-white border border-gray-300">
+    <div className="relative bg-white border border-gray-300 w-full">
       <img src={item.image} alt="clothing item" className="w-full h-32 object-cover" />
       <div className="absolute bottom-2 right-2">
         <button 
