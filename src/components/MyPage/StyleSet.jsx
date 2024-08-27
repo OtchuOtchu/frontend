@@ -69,28 +69,30 @@ const StyleSet = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 bg-gray-100 p-4 w-full">
+      <div className="grid grid-cols-4 gap-8 bg-gray-100 p-8 w-full">
         {filteredOutfits.map((outfit) => (
           <div key={outfit.date} className="bg-white border relative text-center">
-            <div className="flex justify-center items-center p-2 bg-gray-800 text-white mx-auto" style={{ maxWidth: '200px' }}>
-              <div className="flex justify-center items-center w-full">
-                <span className="text-xl font-bold">{outfit.date}</span>
-                <button
-                  onClick={() => removeOutfit(outfit.date)}
-                  className="ml-4"
-                  style={{ backgroundColor: 'transparent', border: 'none', padding: '0', cursor: 'pointer' }}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="white">
-                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
+            <div className="flex justify-center items-center p-2 bg-gray-800 text-white w-full">
+              <span className="text-xl font-bold mr-2">{outfit.date}</span>
+              <button
+                onClick={() => removeOutfit(outfit.date)}
+                className="ml-2"
+                style={{ backgroundColor: 'transparent', border: 'none', padding: '0', cursor: 'pointer' }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="white">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
             </div>
-            <div className="text-center p-2 bg-gray-300">{outfit.weather}</div>
+            <div className="text-center p-2 bg-gray-300 font-bold">{outfit.weather}</div>
 
-            <div className="grid grid-cols-1 gap-4 mt-4">
+            {/* 날짜 밑에 간격 추가 */}
+            <div className="mt-4"></div>
+
+            {/* 의류 아이템들 사이 간격 추가 */}
+            <div className="flex flex-col w-full space-y-4">
               {outfit.items.map((item) => (
-                <ClothingItem key={item.id} item={item} />
+                <ClothingItem key={item.id} item={item} className="w-full" />
               ))}
             </div>
           </div>
