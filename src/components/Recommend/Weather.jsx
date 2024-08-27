@@ -2,24 +2,26 @@ import { useEffect } from 'react';
 import useWeatherStore from '../../store/WeatherStore';
 import useDateStore from '../../store/DateStore';
 import { weatherValue } from '../../util/WeatherValue';
+import useCoordinates from '../../hooks/useCoordinates';
 
 export default function Weather() {
-    const weatherKey = import.meta.env.VITE_WEATHER_KEY; //날씨 api 호출
+    const weatherKey = import.meta.env.VITE_WEATHER_KEY; // 날씨 API 호출
     const { weatherData, getWeatherData } = useWeatherStore();
     const { selectedDate } = useDateStore(); // 전역 상태의 날짜 참조
-
-    //좌표 가져오기
-    const getCurrentLocation = () => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            getWeatherData(lat, lon, weatherKey);
-        });
-    };
+    const { coords, error } = useCoordinates(); // 좌표값 가져오기
 
     useEffect(() => {
-        getCurrentLocation();
-    }, [weatherKey]);
+        if (coords) {
+            console.log('좌표 가져오기 성공:', coords);
+            const lat = coords.lat;
+            const lon = coords.lng;
+            getWeatherData(lat, lon, weatherKey);
+        }
+    }, [coords, weatherKey]);
+
+    if (error) {
+        return <div>Error getting location: {error.message}</div>;
+    }
 
     const getWeatherBackground = () => {
         const description = weatherData[selectedDate]?.weather;

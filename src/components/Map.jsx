@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { loadKakaoMapsApi } from '../api/mapApi';
+import { loadKakaoMapsApi } from '../api/mapAPI';
 
 export default function Map() {
   const mapRef = useRef(null);

@@ -3,14 +3,13 @@ import Recommend from "../components/Recommend/Recommend";
 import Weather from "../components/Recommend/Weather";
 
 export default function Recommendation() {
-
     return (
-        <div className="flex">
-            <div className="flex-col">
+        <div className="flex h-screen">
+            <div className="flex flex-col flex-1 overflow-y-auto">
                 <DateShift />
                 <Recommend />
             </div>
-            <Weather />
+            <Weather className="flex-1" />
         </div>
     );
 }
