@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import BlackButton from "./BlackButton";
 import InputForm from "./InputForm";
 import Map from "./Map";
+
 import Modal from "./Modal";
+import GetAddress from "./GetAddress";
+
 
 export default function LocationModal() {
   const navigate = useNavigate();
@@ -20,8 +23,10 @@ export default function LocationModal() {
           {/* <div className="flex">
             <InputForm placeholder="위치를 입력하세요" />
             <BlackButton label="Search" className="w-[6px]" />
-          </div> */}
-          <Map />
+          </div>*/}
+          {/* <Map /> */}
+          {/* <Home /> */}
+          <GetAddress />
           <BlackButton label={"닫기"} onClick={closeHandler} />
         </div>
       </div>

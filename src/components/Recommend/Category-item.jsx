@@ -1,10 +1,16 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
+import { getDownloadURL, ref } from "firebase/storage";
+import { imageDb } from "../../firebase/fbInstance";
+
 import useClothesStore from "../../store/ClothesStore";
 
 export default function CategoryItem({ category, todaySet, handleItemClick, toggleLiked }) {
     const clothes = useClothesStore((state) => state.clothes);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [clothesWithUrls, setClothesWithUrls] = useState([]);
 
     const handleNext = () => {
         const maxIndex = clothes.filter((item) => item.category === category).length - 3;
@@ -14,6 +20,24 @@ export default function CategoryItem({ category, todaySet, handleItemClick, togg
     const handlePrev = () => {
         setCurrentIndex((prev) => (prev - 1 < 0 ? 0 : prev - 1));
     };
+
+    useEffect(() => {
+        const fetchClothesImages = async () => {
+            const updatedClothes = await Promise.all(
+                clothes.map(async (item) => {
+                    if (!item.image.startsWith("http")) { // 로컬 경로가 아닌 경우만 Firebase에서 URL을 가져옴
+                        const imageRef = ref(imageDb, item.image);
+                        const url = await getDownloadURL(imageRef);
+                        return { ...item, image: url };
+                    }
+                    return item;
+                })
+            );
+            setClothesWithUrls(updatedClothes);
+        };
+
+        fetchClothesImages();
+    }, [clothes]);
 
     return (
         <div className="mb-6 flex items-center ">
@@ -30,11 +54,11 @@ export default function CategoryItem({ category, todaySet, handleItemClick, togg
 
             <div className="w-3/4 flex items-center relative">
                 <IoIosArrowBack
-                    className=" z-10 text-3xl bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 cursor-pointer"
+                    className="z-10 text-3xl bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 cursor-pointer"
                     onClick={handlePrev}
                 />
                 <div className="grid grid-cols-3 gap-4 overflow-hidden">
-                    {clothes
+                    {clothesWithUrls
                         .filter((item) => item.category === category)
                         .slice(currentIndex, currentIndex + 3)
                         .map((item) => (
@@ -49,7 +73,6 @@ export default function CategoryItem({ category, todaySet, handleItemClick, togg
                                 <img
                                     src={item.image}
                                     alt='옷'
-                                    //{item.category}
                                     className="w-full h-full object-cover"
                                 />
                                 <button
@@ -75,7 +98,7 @@ export default function CategoryItem({ category, todaySet, handleItemClick, togg
                         ))}
                 </div>
                 <IoIosArrowForward
-                    className=" z-10 text-3xl bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 cursor-pointer"
+                    className="z-10 text-3xl bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 cursor-pointer"
                     onClick={handleNext}
                 />
             </div>
