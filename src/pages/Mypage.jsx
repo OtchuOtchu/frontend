@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import MyAccount from "../components/MyPage/MyAccount";
 import Tab from '../components/MyPage/Tab';
+import ImageGallery from '../components/ImageGallery';
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
             <div className='flex flex-col justify-center items-center gap-[50px]'>
                 <MyAccount />
                 <Tab />
+                <ImageGallery/>
             </div>
         </div>
     )
