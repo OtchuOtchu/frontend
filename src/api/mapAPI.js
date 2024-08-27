@@ -1,3 +1,24 @@
+export function loadKakaoMapsApi() {
+    return new Promise((resolve, reject) => {
+        if (window.kakao && window.kakao.maps) {
+            resolve(); // 이미 로드된 경우
+        } else {
+            const kakaoApiKey = import.meta.env.VITE_JAVASCRIPT_KEY;
+            const script = document.createElement('script');
+            script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoApiKey}&libraries=services&autoload=false`;  // autoload=false 추가
+            script.async = true;  // async 속성 추가
+            script.onload = () => {
+                window.kakao.maps.load(() => {  // maps load 콜백 사용
+                    resolve();
+                });
+            };
+            script.onerror = (e) => reject(e);
+            document.head.appendChild(script);
+        }
+    });
+}
+
+// 지도용
 // export function loadKakaoMapsApi() {
 //     return new Promise((resolve, reject) => {
 //         const script = document.createElement('script');
@@ -8,21 +29,3 @@
 //         document.head.appendChild(script);
 //     });
 // }
-
-// src/api/mapAPI.js
-export function loadKakaoMapsApi() {
-    return new Promise((resolve, reject) => {
-        if (window.kakao && window.kakao.maps) {
-            resolve(); // 이미 로드된 경우
-        } else {
-            const kakaoApiKey = import.meta.env.VITE_JAVASCRIPT_KEY;
-            const script = document.createElement('script');
-            script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoApiKey}&libraries=services`;
-            script.defer = true;  // defer 속성 추가
-            script.onload = () => resolve();
-            script.onerror = (e) => reject(e);
-            document.head.appendChild(script);
-        }
-    });
-}
-

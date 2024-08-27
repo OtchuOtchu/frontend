@@ -5,8 +5,8 @@ import InputForm from "./InputForm";
 import Map from "./Map";
 
 import Modal from "./Modal";
+import GetAddress from "./GetAddress";
 
-import PostcodeToAdministrativeArea from "./GetAddress";
 
 export default function LocationModal() {
   const navigate = useNavigate();
@@ -25,8 +25,8 @@ export default function LocationModal() {
             <BlackButton label="Search" className="w-[6px]" />
           </div>*/}
           {/* <Map /> */}
-          <PostcodeToAdministrativeArea />
-          {/* <AddressToCoords /> */}
+          {/* <Home /> */}
+          <GetAddress />
           <BlackButton label={"닫기"} onClick={closeHandler} />
         </div>
       </div>
