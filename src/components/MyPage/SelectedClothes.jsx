@@ -11,7 +11,7 @@ const SelectedClothes = () => {
   const [filteredClothes, setFilteredClothes] = useState(likedClothes);
 
   const categories = ['ALL', '상의', '아우터', '하의', '신발', '액세서리', '기타용품'];
-  const weatherOptions = ['ALL', '맑음', '구름', '흐림', '비', '눈'];
+  const weatherOptions = ['ALL', 'Sunny', 'Partly cloudy', 'Cloudy', 'Rain', 'Snow'];
 
   const toggleCategory = (category) => {
     setSelectedCategories(prev => {
