@@ -14,7 +14,11 @@ export default function useGoogleAuth() {
 
     const sendTokenToBackend = async (idToken) => {
         try {
-            const response = await axios.post('http://localhost:8080/', { token: idToken });
+            const response = await axios.get('http://localhost:4000/', {
+                headers: {
+                    Authorization: `Bearer ${idToken}`
+                }
+            });
             console.log('Backend response:', response.data);
         } catch (error) {
             console.error('Error sending token to backend:', error);
@@ -31,6 +35,11 @@ export default function useGoogleAuth() {
 
             if (matchedUser) {
                 const idToken = await user.getIdToken();
+                if (idToken) {
+                    console.log('ID Token successfully retrieved:', idToken);
+                } else {
+                    console.error('Failed to retrieve ID Token');
+                }
                 await sendTokenToBackend(idToken);
                 usePeopleStore.setState({ loggedInUser: matchedUser });
                 navigate('/recommend');
@@ -54,11 +63,11 @@ export default function useGoogleAuth() {
                 const userChoice = window.confirm("이미 가입한 계정입니다. 로그인하시겠습니까?");
                 if (userChoice) {
                     const idToken = await user.getIdToken();
-                    if (idToken) {
-                        console.log('ID Token successfully retrieved:', idToken);
-                    } else {
-                        console.error('Failed to retrieve ID Token');
-                    }
+                    // if (idToken) {
+                    //     console.log('ID Token successfully retrieved:', idToken);
+                    // } else {
+                    //     console.error('Failed to retrieve ID Token');
+                    // }
                     await sendTokenToBackend(idToken);
 
                     usePeopleStore.setState({ loggedInUser: existingUser });
