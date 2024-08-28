@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { fetchImageURL } from '../util/fbUtils';
+
 import { initialClothes, initialOutfitSets } from '../util/dummyData';
 
 const useClothesStore = create((set) => ({
@@ -11,7 +13,6 @@ const useClothesStore = create((set) => ({
     하의: null,
     신발: null,
     아우터: null,
-    아이템: null,
   },
   setOutfitSets: (newOutfitSets) => set({ outfitSets: newOutfitSets }),
   setTodaySet: (category, item) => set((state) => ({
@@ -35,6 +36,11 @@ const useClothesStore = create((set) => ({
       [date]: outfitIds,
     },
   })),
+
+  // 새로운 옷 추가하는 메서드
+  // addClothes: (newItem) => set((state) => ({
+  //   clothes: [...state.clothes, { ...newItem, id: state.clothes.length + 1 }],
+  // })),
   addClothes: async (newItem) => {
     const imageUrl = await getImageUrl(newItem.imagePath); // Firebase에서 이미지 URL 가져오기
     set((state) => ({

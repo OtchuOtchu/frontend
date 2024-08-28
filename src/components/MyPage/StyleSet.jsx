@@ -1,45 +1,29 @@
 import React, { useState } from 'react';
 import ClothingItem from './ClothingItem';
+import useClothesStore from '../../store/ClothesStore';
 
 const StyleSet = () => {
   const [selectedWeather, setSelectedWeather] = useState('ALL');
-  const [likedOutfits, setLikedOutfits] = useState([
-    {
-      date: '2024-08-01',
-      weather: '흐림',
-      items: [
-        { id: 1, image: '/path/to/shirt.jpg', type: 'shirt' },
-        { id: 2, image: '/path/to/jacket.jpg', type: 'jacket' },
-        { id: 3, image: '/path/to/pants.jpg', type: 'pants' },
-        { id: 4, image: '/path/to/shoes.jpg', type: 'shoes' },
-      ],
-    },
-    {
-      date: '2024-08-02',
-      weather: '눈',
-      items: [
-        { id: 5, image: '/path/to/shirt2.jpg', type: 'shirt' },
-        { id: 6, image: '/path/to/jacket2.jpg', type: 'jacket' },
-        { id: 7, image: '/path/to/pants2.jpg', type: 'pants' },
-        { id: 8, image: '/path/to/shoes2.jpg', type: 'shoes' },
-      ],
-    },
-    // ... 더 많은 날짜별 데이터
-  ]);
+  const { outfitSets, clothes, removeOutfitSet, toggleLiked } = useClothesStore();
 
-  const weatherOptions = ['ALL', '맑음', '구름', '흐림', '비', '눈'];
+  const weatherOptions = ['ALL', 'Sunny', 'Partly cloudy', 'Cloudy', 'Rain', 'Snow'];
+  const categories = ['상의', '하의', '신발', '아우터'];
 
   const toggleWeather = (weather) => {
     setSelectedWeather(prev => prev === weather ? 'ALL' : weather);
   };
 
   const removeOutfit = (date) => {
-    setLikedOutfits(prev => prev.filter(outfit => outfit.date !== date));
+    removeOutfitSet(date);
   };
 
-  const filteredOutfits = likedOutfits.filter(outfit => 
-    selectedWeather === 'ALL' || outfit.weather === selectedWeather
-  );
+  const filteredOutfits = Object.entries(outfitSets)
+    .map(([date, outfitData]) => ({
+      date,
+      weather: outfitData.weather || 'Unknown',
+      items: outfitData.map(id => clothes.find(item => item.id === id)).filter(Boolean)
+    }))
+    .filter(outfit => selectedWeather === 'ALL' || outfit.weather === selectedWeather);
 
   return (
     <div className="w-full">
@@ -86,14 +70,13 @@ const StyleSet = () => {
             </div>
             <div className="text-center p-2 bg-gray-300 font-bold">{outfit.weather}</div>
 
-            {/* 날짜 밑에 간격 추가 */}
             <div className="mt-4"></div>
 
-            {/* 의류 아이템들 사이 간격 추가 */}
             <div className="flex flex-col w-full space-y-4">
-              {outfit.items.map((item) => (
-                <ClothingItem key={item.id} item={item} className="w-full" />
-              ))}
+              {categories.map((category) => {
+                const item = outfit.items.find(item => item.category === category) || {};
+                return <ClothingItem key={category} item={item} toggleLiked={toggleLiked} />;
+              })}
             </div>
           </div>
         ))}
