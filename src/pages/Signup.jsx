@@ -21,12 +21,12 @@ export default function Signup() {
         e.preventDefault();
 
         const newUser = {
-            nickname,
-            gender,
+            nickname: nickname || "임시닉네임",
+            gender: gender || "선택안함",
             email: loggedInUser.email,
-            style,
-            height,
-            weight,
+            style: style || "캐주얼",
+            height: height || "0",
+            weight: weight || "0",
         };
 
         setPeople([...people, newUser]);
@@ -39,6 +39,10 @@ export default function Signup() {
         }
     };
     // 회원가입 처리 로직
+
+    const styles = [
+        "시크", "도도", "귀여운", "캐주얼", "스포티", "보헤미안", "모던", "빈티지", "프레피", "페미닌"
+    ];
 
     return (
         <div className="w-screen flex justify-center items-center min-h-screen">
@@ -60,19 +64,35 @@ export default function Signup() {
                         onChange={(e) => setNickname(e.target.value)}
                         placeholder={"닉네임을 입력하세요."}
                     />
-                    <InputForm
-                        label="성별"
-                        type="text"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                        placeholder={"성별을 입력하세요."}
-                    />
+                    <div className="flex flex-col gap-2 mb-4 w-full">
+                        <label className="text-black text-xl font-normal">성별</label>
+                        <div className="flex gap-4">
+                            <button
+                                type="button"
+                                onClick={() => setGender('남')}
+                                className={`w-[50%] h-[60px] ${gender === '남' ? 'bg-blue-500 text-white' : 'bg-neutral-50 border-b border-black'}`}
+                            >
+                                남
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setGender('녀')}
+                                className={`w-[50%] h-[60px] ${gender === '녀' ? 'bg-pink-500 text-white' : 'bg-neutral-50 border-b border-black'}`}
+                            >
+                                여
+                            </button>
+                        </div>
+                    </div>
                     <InputForm
                         label="스타일"
-                        type="text"
+                        type="select"
                         value={style}
                         onChange={(e) => setStyle(e.target.value)}
-                        placeholder={"선호하는 스타일을 입력하세요."}
+                        options={styles.map((style, index) => (
+                            <option key={index} value={style}>
+                                {style}
+                            </option>
+                        ))}
                     />
                     <InputForm
                         label="키"

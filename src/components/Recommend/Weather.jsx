@@ -4,7 +4,7 @@ import useDateStore from '../../store/DateStore';
 import { weatherValue } from '../../util/WeatherValue';
 import useCoordinates from '../../hooks/useCoordinates';
 import { weatherImages } from '../../util/dummyData'; // 올바른 경로 설정
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+
 
 export default function Weather() {
     const weatherKey = import.meta.env.VITE_WEATHER_KEY; // 날씨 API 호출
