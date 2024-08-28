@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { fetchWeatherData } from '../Api/WeatherService';
+import { fetchWeatherData } from '../api/WeatherService';
 
 const useWeatherStore = create((set) => ({
     weatherData: {},
@@ -8,9 +8,10 @@ const useWeatherStore = create((set) => ({
             const data = await fetchWeatherData(lat, lon, weatherKey);
 
             // 받아온 데이터 구조 확인 후 상태 업데이트
-            if (data && data.forecast && data.forecast.forecastday) {
+            if (data && data.current && data.forecast && data.forecast.forecastday) {
                 set({
                     weatherData: {
+                        currentTemp: data.current.temp_c, // 현재 온도 추가
                         today: {
                             weather: data.forecast.forecastday[0].day.condition.text,
                             tempMax: data.forecast.forecastday[0].day.maxtemp_c,
