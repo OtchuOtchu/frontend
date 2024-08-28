@@ -1,34 +1,47 @@
+
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+
+// Firebase Storage에서 폴더의 모든 이미지를 가져오는 함수
+export async function fetchImagesFromFolder(folderPath) {
+    const storage = getStorage();
+    const folderRef = ref(storage, folderPath);
+
+    try {
+        const res = await listAll(folderRef);
+        const imageUrls = await Promise.all(
+            res.items.map(async (itemRef) => {
+                const url = await getDownloadURL(itemRef);
+                return url;
+            })
+        );
+
+        console.log('이미지 URLs:', imageUrls);
+        return imageUrls;
+    } catch (error) {
+        console.error("Error fetching images:", error);
+    }
+}
+
+export const weatherImages=[
+    {id:1,  weather: 'sunny', image:'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2Fweather%2Fsunny1.jpg?alt=media&token=2e74560e-3c10-4d2d-a2b1-56f48aeb1416'},
+    {id:2,  weather: 'cloudy', image:'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2Fweather%2Fcloudy1.jpg?alt=media&token=953e136c-c9fb-4050-bc08-5f763f0ffcd3'},
+    {id:3,  weather: 'snowy', image:'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2Fweather%2Fwinter1.jpg?alt=media&token=551c16b2-aeae-4a80-88d5-9a24fa89e716'},
+    {id:4,  weather: 'rainy', image:'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2Fweather%2Frainy3.jpg?alt=media&token=7beb73c2-9334-4374-ab59-700e509ec4c3'},
+    {id:5,  weather: 'windy', image:'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2Fweather%2Fwindy2.jpg?alt=media&token=9327b695-d6ed-4c58-b66d-760aa44338f5'},
+]
+
+
 export const initialClothes = [
-    { id: 1, image: 'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2F1724587757476_chino.png?alt=media', category: '상의', weather: '맑음', liked: false },
-    { id: 2, image: 'https://firebasestorage.googleapis.com/v0/b/reactfirebasetest-40937.appspot.com/o/images%2F1724589542886_0d85f8883dfb490b8e4b22e57814b954.png?alt=media', category: '상의', weather: '맑음', liked: false },
-    // { id: 3, image: '/path/to/pants.jpg', category: '하의', weather: '흐림', liked: true },
-    // { id: 4, image: '/path/to/jacket2.jpg', category: '아우터', weather: '비', liked: false },
-    // { id: 5, image: '/path/to/shoes.jpg', category: '신발', weather: 'ALL', liked: true },
-    // { id: 6, image: '/path/to/jacket3.jpg', category: '아우터', weather: '눈', liked: true },
-    // { id: 7, image: '/path/to/hat.jpg', category: '액세서리', weather: '맑음', liked: false },
-    // { id: 8, image: '/path/to/scarf.jpg', category: '액세서리', weather: '구름', liked: true },
-    // { id: 9, image: '/path/to/gloves.jpg', category: '기타용품', weather: '눈', liked: false },
-    // { id: 10, image: '/path/to/shorts.jpg', category: '하의', weather: '맑음', liked: true },
-    // { id: 11, image: '/path/to/boots.jpg', category: '신발', weather: '눈', liked: false },
-    // { id: 12, image: '/path/to/tshirt.jpg', category: '상의', weather: '맑음', liked: true },
-    // { id: 13, image: '/path/to/umbrella.jpg', category: '기타용품', weather: '비', liked: false },
-    // { id: 14, image: '/path/to/raincoat.jpg', category: '아우터', weather: '비', liked: true },
-    // { id: 15, image: '/path/to/sunglasses.jpg', category: '액세서리', weather: '맑음', liked: true },
-    // { id: 16, image: '/path/to/sweater.jpg', category: '상의', weather: '구름', liked: false },
-    // { id: 17, image: '/path/to/hoodie.jpg', category: '상의', weather: '비', liked: true },
-    // { id: 18, image: '/path/to/blouse.jpg', category: '상의', weather: '맑음', liked: false },
-    // { id: 19, image: '/path/to/cardigan.jpg', category: '상의', weather: '구름', liked: true },
-    // { id: 20, image: '/path/to/coat.jpg', category: '아우터', weather: '눈', liked: false },
-    // { id: 21, image: '/path/to/jeans.jpg', category: '하의', weather: 'ALL', liked: true },
-    // { id: 22, image: '/path/to/leggings.jpg', category: '하의', weather: '흐림', liked: false },
-    // { id: 23, image: '/path/to/skirt.jpg', category: '하의', weather: '맑음', liked: true },
-    // { id: 24, image: '/path/to/slacks.jpg', category: '하의', weather: '구름', liked: false },
-    // { id: 25, image: '/path/to/chinos.jpg', category: '하의', weather: '맑음', liked: true },
-    // { id: 26, image: '/path/to/sneakers.jpg', category: '신발', weather: 'ALL', liked: true },
-    // { id: 27, image: '/path/to/loafers.jpg', category: '신발', weather: '구름', liked: false },
-    // { id: 28, image: '/path/to/sandals.jpg', category: '신발', weather: '맑음', liked: true },
-    // { id: 29, image: '/path/to/highheels.jpg', category: '신발', weather: '맑음', liked: false },
-    // { id: 30, image: '/path/to/running_shoes.jpg', category: '신발', weather: '흐림', liked: true },
+    { id: 1, image: 'https://example.com/tshirt.png', category: '상의', weather: 'rainy', minTemp: 20, maxTemp: 30, liked: false },
+    { id: 2, image: 'https://example.com/hoodie.png', category: '상의', weather: 'cloudy', minTemp: 10, maxTemp: 20, liked: true },
+    { id: 3, image: 'https://example.com/jacket.png', category: '아우터', weather: 'rainy', minTemp: 5, maxTemp: 15, liked: false },
+    { id: 4, image: 'https://example.com/coat.png', category: '아우터', weather: 'snowy', minTemp: -5, maxTemp: 5, liked: true },
+    { id: 5, image: 'https://example.com/shorts.png', category: '하의', weather: 'sunny', minTemp: 25, maxTemp: 35, liked: false },
+    { id: 6, image: 'https://example.com/jeans.png', category: '하의', weather: 'cloudy', minTemp: 15, maxTemp: 25, liked: true },
+    { id: 7, image: 'https://example.com/boots.png', category: '신발', weather: 'rainy', minTemp: 5, maxTemp: 15, liked: false },
+    { id: 8, image: 'https://example.com/sandals.png', category: '신발', weather: 'sunny', minTemp: 20, maxTemp: 35, liked: true },
+    { id: 9, image: 'https://example.com/scarf.png', category: '액세서리', weather: 'windy', minTemp: 5, maxTemp: 20, liked: false },
+    { id: 10, image: 'https://example.com/hat.png', category: '액세서리', weather: 'sunny', minTemp: 20, maxTemp: 35, liked: true },
 ];
 
 
