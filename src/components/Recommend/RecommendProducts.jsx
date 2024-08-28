@@ -18,10 +18,10 @@ export default function RecommendProducts() {
         toggleLiked: state.toggleLiked,
     }));
 
-    const { selectedDate } = useDateStore(); // Use selectedDate from DateStore
-    const { weatherData } = useWeatherStore(); // 날씨 데이터 참조
+    const { selectedDate } = useDateStore();
+    const { weatherData } = useWeatherStore();
 
-    const categories = ["상의", "하의", "신발", "아우터"];
+    const categories = ["상의", "하의", "신발", "아우터", "아이템"];
 
     const handleItemClick = (category, item) => {
         setTodaySet(category, item);
