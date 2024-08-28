@@ -16,13 +16,13 @@ const useClothingRecommendations = (selectedCategory) => {
                 const temperatureMatch = (currentTemp >= item.minTemp && currentTemp <= item.maxTemp);
                 //console.log(temperatureMatch && weatherMatch && categoryMatch);
                 //console.log(weatherMatch);
-                console.log(selectedWeather);
+                //console.log(selectedWeather);
                 return temperatureMatch && weatherMatch && categoryMatch;
             });
         };
 
         const filteredClothes = filterClothes();
-        console.log('Filtered Clothes:', filteredClothes);
+        //console.log('Filtered Clothes:', filteredClothes);
         setRecommendedClothes(filteredClothes);
     }, [selectedCategory, currentTemp, clothes, selectedWeather]);
 
